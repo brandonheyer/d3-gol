@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<style>
+			* {
+				box-sizing: border-box;	
+			}
+			
+			#board {
+				background: #eeeeee;
+			}
+			
+			#board, .cell {
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+		
+			.cell {
+				width: 10px;
+				height: 10px;				
+				float: left;
+				background: #cccccc;
+				border: 1px solid #dddddd;							
+			}
+			
+			.cell.on {
+				border: 1px solid #ffffff;
+				background: #000000;
+			}
+			
+			.cell:hover {
+				background: #eeeeee;
+			}
+			
+			.cell[data-age-short="1"]{background:#bc1212;}.cell[data-age-short="2"]{background:#be2525;}.cell[data-age-short="3"]{background:#bf3737;}.cell[data-age-short="4"]{background:#c14a4a;}
+			.cell[data-age-short="5"]{background:#c25c5c;}.cell[data-age-short="6"]{background:#c46f6f;}.cell[data-age-short="7"]{background:#c58181;}.cell[data-age-short="8"]{background:#c79494;}
+			.cell[data-age-short="9"]{background:#c8a6a6;}.cell[data-age-short="10"]{background:#cab9b9;}
+			
+			
+			.cell[data-age-long="1"]{background:#03B700;}.cell[data-age-long="2"]{background:#07B300;}.cell[data-age-long="3"]{background:#0BB000;}.cell[data-age-long="4"]{background:#0EAC00;}
+			.cell[data-age-long="5"]{background:#12A800;}.cell[data-age-long="6"]{background:#16A500;}.cell[data-age-long="7"]{background:#19A100;}.cell[data-age-long="8"]{background:#1D9D00;}
+			.cell[data-age-long="9"]{background:#219A00;}.cell[data-age-long="10"]{background:#249600;}.cell[data-age-long="11"]{background:#289200;}.cell[data-age-long="12"]{background:#2C8F00;}
+			.cell[data-age-long="13"]{background:#2F8B00;}.cell[data-age-long="14"]{background:#338700;}.cell[data-age-long="15"]{background:#378400;}.cell[data-age-long="16"]{background:#3A8000;}
+			.cell[data-age-long="17"]{background:#3E7C00;}.cell[data-age-long="18"]{background:#427800;}.cell[data-age-long="19"]{background:#457500;}.cell[data-age-long="20"]{background:#497100;}
+			.cell[data-age-long="21"]{background:#4D6E00;}.cell[data-age-long="22"]{background:#506A00;}.cell[data-age-long="23"]{background:#546600;}.cell[data-age-long="24"]{background:#586300;}
+			.cell[data-age-long="25"]{background:#5B5F00;}.cell[data-age-long="26"]{background:#5F5B00;}.cell[data-age-long="27"]{background:#635800;}.cell[data-age-long="28"]{background:#665400;}
+			.cell[data-age-long="29"]{background:#6A5000;}.cell[data-age-long="30"]{background:#6E4D00;}.cell[data-age-long="31"]{background:#714900;}.cell[data-age-long="32"]{background:#754500;}
+			.cell[data-age-long="33"]{background:#794200;}.cell[data-age-long="34"]{background:#7C3E00;}.cell[data-age-long="35"]{background:#803A00;}.cell[data-age-long="36"]{background:#843600;}
+			.cell[data-age-long="37"]{background:#873300;}.cell[data-age-long="38"]{background:#8B2F00;}.cell[data-age-long="39"]{background:#8F2C00;}.cell[data-age-long="40"]{background:#922800;}
+			.cell[data-age-long="41"]{background:#962400;}.cell[data-age-long="42"]{background:#9A2100;}.cell[data-age-long="43"]{background:#9D1D00;}.cell[data-age-long="44"]{background:#A11900;}
+			.cell[data-age-long="45"]{background:#A51600;}.cell[data-age-long="46"]{background:#A81200;}.cell[data-age-long="47"]{background:#AC0E00;}.cell[data-age-long="48"]{background:#B00B00;}
+			.cell[data-age-long="49"]{background:#B30700;}.cell[data-age-long="50"]{background:#B70300;}.cell[data-age-long="51"]{background:#BB0000;}.cell[data-age-long="52"]{background:#BB0404;}
+			.cell[data-age-long="53"]{background:#BB0808;}.cell[data-age-long="54"]{background:#BC0C0C;}.cell[data-age-long="55"]{background:#BC1010;}.cell[data-age-long="56"]{background:#BC1414;}
+			.cell[data-age-long="57"]{background:#BD1818;}.cell[data-age-long="58"]{background:#BD1C1C;}.cell[data-age-long="59"]{background:#BD2020;}.cell[data-age-long="60"]{background:#BE2424;}
+			.cell[data-age-long="61"]{background:#BE2828;}.cell[data-age-long="62"]{background:#BE2C2C;}.cell[data-age-long="63"]{background:#BF3030;}.cell[data-age-long="64"]{background:#BF3434;}
+			.cell[data-age-long="65"]{background:#BF3838;}.cell[data-age-long="66"]{background:#C03C3C;}.cell[data-age-long="67"]{background:#C04040;}.cell[data-age-long="68"]{background:#C04444;}
+			.cell[data-age-long="69"]{background:#C14848;}.cell[data-age-long="70"]{background:#C14C4C;}.cell[data-age-long="71"]{background:#C15050;}.cell[data-age-long="72"]{background:#C25454;}
+			.cell[data-age-long="73"]{background:#C25858;}.cell[data-age-long="74"]{background:#C25C5C;}.cell[data-age-long="75"]{background:#C36060;}.cell[data-age-long="76"]{background:#C36464;}
+			.cell[data-age-long="77"]{background:#C36868;}.cell[data-age-long="78"]{background:#C46C6C;}.cell[data-age-long="79"]{background:#C47070;}.cell[data-age-long="80"]{background:#C47474;}
+			.cell[data-age-long="81"]{background:#C57878;}.cell[data-age-long="82"]{background:#C57B7B;}.cell[data-age-long="83"]{background:#C58080;}.cell[data-age-long="84"]{background:#C68484;}
+			.cell[data-age-long="85"]{background:#C68888;}.cell[data-age-long="86"]{background:#C68C8C;}.cell[data-age-long="87"]{background:#C79090;}.cell[data-age-long="88"]{background:#C79494;}
+			.cell[data-age-long="89"]{background:#C79898;}.cell[data-age-long="90"]{background:#C89C9C;}.cell[data-age-long="91"]{background:#C8A0A0;}.cell[data-age-long="92"]{background:#C8A4A4;}
+			.cell[data-age-long="93"]{background:#C9A8A8;}.cell[data-age-long="94"]{background:#C9ACAC;}.cell[data-age-long="95"]{background:#C9B0B0;}.cell[data-age-long="96"]{background:#CAB4B4;}
+			.cell[data-age-long="97"]{background:#CAB8B8;}.cell[data-age-long="98"]{background:#CABCBC;}.cell[data-age-long="99"]{background:#CBC0C0;}.cell[data-age-long="100"]{background:#CBC4C4;}
+		</style>
+	</head>
+
+	<body>
+		<div id="board">
+						
+		</div>
+		
+		<button class="run">Run</button>
+		<button class="decay">No Decay</button>		
+				
+		<script src="d3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="gol.js" type="text/javascript"></script>
+	</body>	
+</html>
