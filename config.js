@@ -1,7 +1,7 @@
 var gol = {};
 
 gol.config = {
-	rows: 50,
-	cols: 50,
-	cellSize: 10,
+	rows: 81,
+	cols: 128,
+	cellSize: 5,
 };
